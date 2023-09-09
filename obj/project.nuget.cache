@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "0+S43xAc59hIhQwcXof8OVYVn5uQv5M3TSv3+sdVHmV8WUGqpq5VhV/JcOTj9csYPm+oq+IlQwfYiqE00b3vGQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\nimsa\\source\\repos\\emp-handler-api-v2\\emp-handler-api-v2\\emp-handler-api-v2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nimsa\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\nimsa\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\nimsa\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "C:\\Users\\nimsa\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "C:\\Users\\nimsa\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "C:\\Users\\nimsa\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.5.0\\swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
