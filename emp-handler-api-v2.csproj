@@ -18,9 +18,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="EmpHandler.Application\Dtos\" />
-    <Folder Include="EmpHandlerV2\Controllers\" />
-  </ItemGroup>
-
 </Project>

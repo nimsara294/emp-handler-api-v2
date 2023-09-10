@@ -1,11 +1,9 @@
-﻿
-namespace emp_handler_api_v2.EmpHandler.Persistance.Models
+﻿namespace emp_handler_api_v2.EmpHandler.Application.Dtos
 {
-    public class Users
+    public class UserDto
     {
         public int id { get; set; }
         public string? fname { get; set; }
         public string? lname { get; set; }
-/*        public string? dep { get; set; }*/ 
     }
 }
