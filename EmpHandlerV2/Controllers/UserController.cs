@@ -43,6 +43,11 @@ namespace emp_handler_api_v2.EmpHandlerV2.Controllers
 /*                    return LstUser;*/
                     response.data = LstUser;
                 }
+
+                if (_userContext.Users == null)
+                {
+                    response.error = "Invalid ID!";
+                }
                 return response;
 
             }
@@ -73,6 +78,11 @@ namespace emp_handler_api_v2.EmpHandlerV2.Controllers
                     objUser.FirstName = user.fname;
                     objUser.LastName = user.lname;
                     LstUser.Add(objUser);
+                }
+
+                if (user == null)
+                {
+                    response.error = "Invalid ID!";
                 }
 
                 response.data = LstUser;
