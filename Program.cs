@@ -9,8 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<UserContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("EmpHandlerV2")));
 
-/*builder.Services.AddDbContext<DepartmentContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("CrudCS")));*/
+builder.Services.AddDbContext<DepartmentContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("EmpHandlerV2")));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
