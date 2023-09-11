@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using Azure;
 
 namespace emp_handler_api_v2.EmpHandlerV2.Controllers
 {
@@ -18,54 +19,71 @@ namespace emp_handler_api_v2.EmpHandlerV2.Controllers
             _userContext = userContext;
         }
 
-        /*[HttpGet]
-        public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
-        {
-            if (_userContext.Users == null)
-            {
-                return NotFound();
-            }
-
-            return await _userContext.Users.ToListAsync();
-        }*/
 
         [HttpGet]
-        public List<UserDto> GetUsers()
+        public async Task<BaseResponse<List<UserDto>>> GetUsers()
         {
-            List<UserDto> LstUser = new List<UserDto>();
-
-            foreach (Users user in _userContext.Users.ToList())
+            BaseResponse<List<UserDto>> response = new();
+            try
             {
-                UserDto objuser = new UserDto();
-                objuser.id = user.id;
-                objuser.FirstName = user.fname;
-                objuser.LastName = user.lname;
-                LstUser.Add(objuser);
-            }
+                if (_userContext.Users != null)
+                {
+                    List<UserDto> LstUser = new List<UserDto>();
 
-            return LstUser;
+
+                    foreach (Users user in _userContext.Users.ToList())
+                    {
+                        UserDto objuser = new UserDto();
+                        objuser.id = user.id;
+                        objuser.FirstName = user.fname;
+                        objuser.LastName = user.lname;
+                        LstUser.Add(objuser);
+                    }
+
+/*                    return LstUser;*/
+                    response.data = LstUser;
+                }
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+                string message = "Error : " + ex.Message;
+                response.error = "Error occurred while getting GetUserListAsync";
+                response.httpCode = 500;
+                response.httpStatus = StatusCodes.Status500InternalServerError;
+                HttpContext.Response.StatusCode = response.httpStatus;
+
+                return response;
+            }
         }
 
-        /* [HttpPost]
-         public async Task<ActionResult<Users>> PostUser(Users user)
-         {
-             _userContext.Users.Add(user);
-             await _userContext.SaveChangesAsync();
-
-             return CreatedAtAction(nameof(GetUsers), new { id = user.id }, user);
-         }*/
 
         [HttpPost]
         public string PostUser(UserDto user)
         {
-            Users userobj = new Users();
-            userobj.id = user.id;
-            userobj.fname = user.FirstName;
-            userobj.lname = user.LastName;
+            BaseResponse<List<UserDto>> response = new();
+            try
+            {
+                Users userobj = new Users();
+                userobj.id = user.id;
+                userobj.fname = user.FirstName;
+                userobj.lname = user.LastName;
 
-            _userContext.Users.Add(userobj);
-            _userContext.SaveChanges();
-            return "Success";
+                _userContext.Users.Add(userobj);
+                _userContext.SaveChanges();
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                string message = "Error : " + ex.Message;
+                response.error = "Error occurred while getting GetUserListAsync";
+                response.httpCode = 500;
+                response.httpStatus = StatusCodes.Status500InternalServerError;
+                HttpContext.Response.StatusCode = response.httpStatus;
+
+                return response.error;
+            }
         }
     }
 }
