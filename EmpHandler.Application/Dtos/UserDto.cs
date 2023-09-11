@@ -3,7 +3,7 @@
     public class UserDto
     {
         public int id { get; set; }
-        public string? fname { get; set; }
-        public string? lname { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
     }
 }
