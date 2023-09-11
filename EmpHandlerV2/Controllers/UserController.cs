@@ -58,6 +58,29 @@ namespace emp_handler_api_v2.EmpHandlerV2.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        public async Task<BaseResponse<List<UserDto>>> GetUser(int id)
+        {
+            BaseResponse<List<UserDto>> response = new();
+            if(_userContext.Users != null)
+            {
+                List<UserDto> LstUser = new List<UserDto>();
+                var user = await _userContext.Users.FindAsync(id);
+                if (user != null)
+                {
+                    UserDto objUser = new UserDto();
+                    objUser.id = user.id;
+                    objUser.FirstName = user.fname;
+                    objUser.LastName = user.lname;
+                    LstUser.Add(objUser);
+                }
+
+                response.data = LstUser;
+            }
+
+            return response;
+        }
+
 
         [HttpPost]
         public string PostUser(UserDto user)
