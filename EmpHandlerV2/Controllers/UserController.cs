@@ -46,13 +46,26 @@ namespace emp_handler_api_v2.EmpHandlerV2.Controllers
             return LstUser;
         }
 
-        [HttpPost]
-        public async Task<ActionResult<Users>> PostUser(Users user)
-        {
-            _userContext.Users.Add(user);
-            await _userContext.SaveChangesAsync();
+        /* [HttpPost]
+         public async Task<ActionResult<Users>> PostUser(Users user)
+         {
+             _userContext.Users.Add(user);
+             await _userContext.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetUsers), new { id = user.id }, user);
+             return CreatedAtAction(nameof(GetUsers), new { id = user.id }, user);
+         }*/
+
+        [HttpPost]
+        public string PostUser(UserDto user)
+        {
+            Users userobj = new Users();
+            userobj.id = user.id;
+            userobj.fname = user.FirstName;
+            userobj.lname = user.LastName;
+
+            _userContext.Users.Add(userobj);
+            _userContext.SaveChanges();
+            return "Success";
         }
     }
 }
